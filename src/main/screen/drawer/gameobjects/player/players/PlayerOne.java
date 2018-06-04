@@ -2,12 +2,13 @@ package main.screen.drawer.gameobjects.player.players;
 
 import main.screen.drawer.DrawBuilder;
 import main.screen.drawer.gameobjects.player.Player;
+import main.screen.drawer.imageloader.PlayerImageLoader;
 import main.screen.gameloop.GameScreen;
 
 public class PlayerOne extends Player {
 
 	public PlayerOne(DrawBuilder drawBuilder) {
-		super(drawBuilder);
+		super(drawBuilder, new PlayerImageLoader().getImage());
 	}
 
 	@Override
@@ -15,12 +16,37 @@ public class PlayerOne extends Player {
 		this.xAxis = target.getWidth()-target.getWidth()/8; 
 		this.yAxis = target.getHeight()/2+target.getHeight()/5;
 	}
-	
+
 	@Override
-	public void movePlayer(int xAxis) {
-		this.xAxis += xAxis*(this.xAxis/80);
+	public void Build(int xAxis, int punch) {
+		if(punch == 1){
+			doPunch();
+		} else {
+			this.xAxis += xAxis*(this.xAxis/80);
+			this.drawBuilder
+			.setXAxis(this.xAxis)
+			.Build();
+		}
+	}
+
+	@Override
+	public Player drawMeTo(GameScreen target) {
+		Player player = new PlayerOne(drawBuilder);
+		player.drawTo(target);
+		return player;
+	}
+
+	@Override
+	public void doPunch() {
+		System.out.println("puncho");
+		image = new PlayerImageLoader().getImage("soco1");
 		this.drawBuilder
-		.setXAxis(this.xAxis)
+		.setImg(image)
 		.Build();
+//		this.xAxis += xAxis*(this.xAxis/2);
+//		this.drawBuilder
+//		.setImg(img)
+//		.setXAxis(this.xAxis)
+//		.Build();
 	}
 }

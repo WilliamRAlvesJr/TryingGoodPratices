@@ -1,15 +1,18 @@
 package main.screen.gameloop;
 
 import main.servercommunicator.MovementsThread;
-import main.servercommunicator.UIEvents;
 
-public class GameLoop extends GameWindow {
+public class GameLoop {
 
-	public GameLoop() {
+	private MovementsThread MovementsLoop;
+	private GameWindow gameWindow;
 
-		MovementsThread MovementsLoop = new MovementsThread(this);
-
+	public GameLoop(GameWindow gameWindow){
+		this.gameWindow = gameWindow;
+	}
+	
+	public void startLoop() {
+		this.MovementsLoop = new MovementsThread(gameWindow);
 		MovementsLoop.start();
-		addKeyListener(UIEvents.initKeyListener());
 	}
 }

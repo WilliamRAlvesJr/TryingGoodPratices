@@ -5,15 +5,15 @@ import main.servers.server.GameServer;
 public class GameExecutor {
 
 	static public void main(String[] args) {
-		try {
-			GameServer gameServer = new GameServer();
-			gameServer.start();
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		new ClientPlayerMaker();
-		new ClientPlayerMaker();
+
+		GameServer gameServer = new GameServer();
+		gameServer.start();
+		
+		MakePlayers playerOne = new MakePlayers();
+		playerOne.start();
+		
+		MakePlayers playerTwo = new MakePlayers();
+		playerTwo.start();
 
 	}
 }

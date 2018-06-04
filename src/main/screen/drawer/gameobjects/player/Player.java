@@ -1,7 +1,6 @@
 package main.screen.drawer.gameobjects.player;
 
 import java.awt.Image;
-
 import main.screen.drawer.DrawBuilder;
 import main.screen.drawer.imageloader.PlayerImageLoader;
 import main.screen.gameloop.GameScreen;
@@ -9,19 +8,15 @@ import main.screen.gameloop.GameScreen;
 public abstract class Player extends PlayerObject {
 
 	protected int xAxis;
-
 	protected int yAxis;
 
-	public Player(DrawBuilder drawBuilder) {
-		super(drawBuilder);
+	public Player(DrawBuilder drawBuilder, Image image) {
+		super(drawBuilder, image);
 	}
 
-	protected abstract void safePlaceToPlayer(GameScreen target);
+	public abstract void doPunch();
 	
-	@Override
-	protected Image setImage() {
-		return new PlayerImageLoader().getImage();
-	}
+	protected abstract void safePlaceToPlayer(GameScreen target);
 
 	@Override
 	public void drawTo(GameScreen target) {
@@ -30,9 +25,9 @@ public abstract class Player extends PlayerObject {
 		.setXAxis(xAxis)
 		.setYaxis(yAxis)
 		.setWidth(target.getWidth()/16)
-		.setHeight(target.getHeight()/4)
-		.Build();
+		.setHeight(target.getHeight()/4);
 	}
 	
-	public abstract void movePlayer(int xAxis);
+	public abstract void Build(int xAxis, int punch);
+	
 }

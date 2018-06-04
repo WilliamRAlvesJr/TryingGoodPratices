@@ -8,25 +8,29 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
-
 
 public class ClientFactory {
-	
+
 	Client clientPlayer;
-	
+
 	public ClientFactory(){
 		clientPlayer = new Client();
 	}
-	
-	public Client buildClient(ServerSocket serverSocket) throws IOException {
-		clientPlayer.socket = serverSocket.accept();		
-		initiateReader();
-		initiateWriter();
-		System.out.println("New player connected to server");
-		return clientPlayer;
+
+	public Client buildClient(ServerSocket serverSocket) {
+		try {
+			clientPlayer.socket = serverSocket.accept();		
+			initiateReader();
+			initiateWriter();
+			System.out.println("Um novo jogador entrou no servidor");
+			return clientPlayer;
+		} catch(IOException e) {
+			System.err.println("Erro ao construir cliente: "+e);
+			System.exit(0);
+		}
+		return null;
 	}
-	
+
 	private void initiateReader() throws IOException {
 		InputStream is = clientPlayer.socket.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);

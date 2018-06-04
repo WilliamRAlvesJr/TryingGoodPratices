@@ -6,7 +6,6 @@ import java.net.Socket;
 
 public class Client {
 	public Socket socket;
-	BufferedReader br;
-	BufferedWriter bw;
-	
+	public BufferedReader br;
+	public BufferedWriter bw;
 }

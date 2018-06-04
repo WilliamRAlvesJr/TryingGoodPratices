@@ -2,14 +2,13 @@ package main.screen.gameloop;
 
 import javax.swing.JFrame;
 
-import main.screen.drawer.Draw;
+import main.screen.drawer.GameDrawer;
 
-class GameWindow extends JFrame {
+public class GameWindow extends JFrame {
 
-	boolean playing;
-	Draw draw = new Draw();
+	GameDrawer draw = new GameDrawer();
 
-	GameWindow() {
+	public GameWindow() {
 		super("Trabalho");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(draw);

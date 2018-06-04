@@ -5,38 +5,43 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class UIEvents {
-	private static int xAxisPlayerOne;
-	private static int xAxisPlayerTwo;
-	private static KeyListener keyListener;
 	
-	public static KeyListener initKeyListener() {
-		return keyListener = new KeyAdapter() {
+	private int xAxisPlayer;
+	private int punchable;
+	
+	public KeyListener initKeyListener() {
+		return new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
+				case KeyEvent.VK_SPACE:
+					punchable += 1;
+					break;
 				case KeyEvent.VK_RIGHT:
-					xAxisPlayerOne += 10;
+					xAxisPlayer += 10;
 					break;
 				case KeyEvent.VK_LEFT:
-					xAxisPlayerOne -= 10;
+					xAxisPlayer -= 10;
 					break;
 				}
+				
 			}
 		};
 	}
-
-	public static int getxAxisPlayerOne() {
-		return xAxisPlayerOne;
-	}
 	
-	public static int getxAxisPlayerTwo() {
-		return xAxisPlayerTwo;
+	public int getxAxisPlayer() {
+		return xAxisPlayer;
 	}
 
-	public static void setxAxisPlayerOne(int xAxisPlayerOne) {
-		UIEvents.xAxisPlayerOne = xAxisPlayerOne;
+	public void setxAxisPlayer(int xAxisPlayer) {
+		this.xAxisPlayer = xAxisPlayer;
 	}
-	
-	public static void setxAxisPlayerTwo(int xAxisPlayerTwo) {
-		UIEvents.xAxisPlayerTwo = xAxisPlayerTwo;
+
+	public int getPunchable() {
+		return punchable;
 	}
+
+	public void setPunchable(int punchable) {
+		this.punchable = punchable;
+	}
+
 }

@@ -3,14 +3,16 @@ package main.screen.drawer.gameobjects;
 import java.awt.Image;
 
 import main.screen.drawer.DrawBuilder;
+import main.screen.drawer.DrawMe;
 import main.screen.gameloop.GameScreen;
 
-public abstract class GameObject {
-	Image image;
+public abstract class GameObject implements DrawMe {
+	
+	protected Image image;
 	protected DrawBuilder drawBuilder;
 
-	public GameObject(DrawBuilder drawBuilder) {
-		this.image = setImage();
+	public GameObject(DrawBuilder drawBuilder, Image image) {
+		this.image = image;
 		this.drawBuilder = drawBuilder;
 		drawBuilder.setImg(image)
 		.setXAxis(0)
@@ -23,6 +25,4 @@ public abstract class GameObject {
 		.setHeight(target.getHeight())
 		.Build();
 	}
-
-	protected abstract Image setImage();
 }

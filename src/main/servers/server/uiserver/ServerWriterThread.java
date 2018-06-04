@@ -1,30 +1,34 @@
 package main.servers.server.uiserver;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.Socket;
+
+import main.servers.client.Client;
 
 public class ServerWriterThread extends Thread {
 	
-	private static Socket socket;
+	private Client client;
 	
-	public ServerWriterThread(Socket socket){
-		this.socket = socket;
+	public ServerWriterThread(Client client){
+		this.client = client;
 	}
 	
 	@Override
 	public void run() {	
-		System.out.println("Inicio da Reader");
 		while(true) {
 			try {
-				OutputStream is = socket.getOutputStream();
+				OutputStream is = client.socket.getOutputStream();
 				OutputStreamWriter isr = new OutputStreamWriter(is);
 				BufferedWriter bw = new BufferedWriter(isr);
-				bw.write(" String do server \n");
+				String msg = "Mensagem escrita pelo servidor";
+				bw.write(msg);
 				bw.flush();
-				
-			} catch (Exception e) {}				
+				sleep(67);
+			} catch (InterruptedException | IOException e) {
+				System.err.println("Impossivel escrever mensagem no cliente\n"+e);
+			}			
 		}
 	}
 }
