@@ -10,9 +10,9 @@ public class GameExecutor {
 		gameServer.start();
 		
 		MakePlayers playerOne = new MakePlayers();
-		playerOne.start();
-		
 		MakePlayers playerTwo = new MakePlayers();
+		
+		playerOne.start();
 		playerTwo.start();
 
 	}

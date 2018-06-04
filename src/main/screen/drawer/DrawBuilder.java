@@ -12,29 +12,33 @@ public class DrawBuilder {
 	private int width;
 	private int height;
 	private Image img;
-	private static Graphics graphics;
-
+	private Graphics graphics;
+	private JPanel jpanel;
+	
 	public void setGraphics(Graphics graphics) {
-		DrawBuilder.graphics = graphics;
+		this.graphics = graphics;
 	}
 
-	static private JPanel jpanel;
-
 	public DrawBuilder(Graphics graphics, JPanel jpanel) {
-		DrawBuilder.graphics = graphics;
-		DrawBuilder.jpanel = jpanel;
+		this.graphics = graphics;
+		this.jpanel = jpanel;
 	}
 
 	public Graphics Build() {
 		graphics.drawImage(img, xAxis, yAxis, width, height, jpanel);
 		return graphics;
 	}
+	
+	public Graphics Build(Image img) {
+		this.img = img;
+		return Build();
+	}
 
 	public DrawBuilder setImg(Image img) {
 		this.img = img;
 		return this;
 	}
-
+	
 	public DrawBuilder setYaxis(int yAxis) {
 		this.yAxis = yAxis;
 		return this;

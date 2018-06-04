@@ -5,16 +5,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class UIEvents {
-	
+
 	private int xAxisPlayer;
 	private int punchable;
-	
+
 	public KeyListener initKeyListener() {
 		return new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_SPACE:
-					punchable += 1;
+					punchable += 10;
 					break;
 				case KeyEvent.VK_RIGHT:
 					xAxisPlayer += 10;
@@ -23,11 +23,11 @@ public class UIEvents {
 					xAxisPlayer -= 10;
 					break;
 				}
-				
+
 			}
 		};
 	}
-	
+
 	public int getxAxisPlayer() {
 		return xAxisPlayer;
 	}

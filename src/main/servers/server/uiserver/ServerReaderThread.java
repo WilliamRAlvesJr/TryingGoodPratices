@@ -34,37 +34,39 @@ public class ServerReaderThread extends Thread {
 	public void run() {	
 		while(true) {
 			try {
+				
 				String msg = client.br.readLine();
-				if(msg.startsWith(clientOneName)) {
-					if(msg.endsWith("RIGHT"))
-						GameDrawer.xAxisPlayerOne -= 1;
-
-					else if(msg.endsWith("LEFT"))
-						GameDrawer.xAxisPlayerOne += 1;
-					
-					else if(msg.endsWith("PUNCH")){
-						GameDrawer.punchPlayerOne += 1;
-						sleep(67);
-						GameDrawer.punchPlayerOne -= 1;
-					}
-				}
-				else if(msg.startsWith(clientTwoName)) {
-					if(msg.endsWith("LEFT"))
-						GameDrawer.xAxisPlayerTwo += 1;
-
-					else if(msg.endsWith("RIGHT"))
-						GameDrawer.xAxisPlayerTwo -= 1;
-					
-					else if(msg.endsWith("PUNCH")){
-						GameDrawer.punchPlayerTwo += 1;
-						GameDrawer.punchPlayerTwo -= 1;
-					}
-				}
-
+				sendValues(msg);
+				
 				sleep(67);
 			} catch (InterruptedException | IOException e) {
 				System.err.println("Erro ao fazer comunicação com clientes\n"+e);
 			}				
+		}
+	}
+	
+	private void sendValues(String msg){
+		
+		if(msg.startsWith(clientOneName)) {
+			if(msg.endsWith("RIGHT"))
+				GameDrawer.xAxisPlayerOne -= 1;
+
+			else if(msg.endsWith("LEFT"))
+				GameDrawer.xAxisPlayerOne += 1;
+			
+			else if(msg.endsWith("PUNCH"))
+				GameDrawer.playerOneState = 2;
+		}
+		
+		else if(msg.startsWith(clientTwoName)) {
+			if(msg.endsWith("LEFT"))
+				GameDrawer.xAxisPlayerTwo += 1;
+
+			else if(msg.endsWith("RIGHT"))
+				GameDrawer.xAxisPlayerTwo -= 1;
+			
+			else if(msg.endsWith("PUNCH"))
+				GameDrawer.playerTwoState = 2;
 		}
 	}
 

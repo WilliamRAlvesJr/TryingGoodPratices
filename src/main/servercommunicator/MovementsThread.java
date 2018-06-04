@@ -48,14 +48,13 @@ public class MovementsThread extends Thread {
 					bw.flush();
 					
 					uiEvents.setxAxisPlayer(uiEvents.getxAxisPlayer()/10);
-				} else if (uiEvents.getPunchable()%2 == 1) {
+				} else if (uiEvents.getPunchable() > 1) {
 
 					bw.write(socket.getLocalPort()+"PUNCH"+"\n");
 					bw.flush();
-
-					uiEvents.setPunchable(uiEvents.getPunchable() + 1); 
-				}
 					
+					uiEvents.setPunchable(uiEvents.getPunchable()/10); 
+				}
 				player.repaint();
 				sleep(67);
 			}catch(InterruptedException | IOException e){

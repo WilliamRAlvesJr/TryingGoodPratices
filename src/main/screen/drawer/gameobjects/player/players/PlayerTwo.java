@@ -18,15 +18,8 @@ public class PlayerTwo extends Player {
 	}
 
 	@Override
-	public void Build(int xAxis, int punch) {
-//		if(punch == 1){
-//			doPunch();
-//		} else {
-			this.xAxis += xAxis*(this.xAxis/4);
-			this.drawBuilder
-			.setXAxis(this.xAxis)
-			.Build();
-//		}
+	protected int reason() {
+		return (this.xAxis/4);
 	}
 
 	@Override
@@ -37,12 +30,12 @@ public class PlayerTwo extends Player {
 	}
 
 	@Override
-	public void doPunch() {
-//		System.out.println("FALCOUN PUNCH");
-//		setImage("soco1");
-//		this.xAxis += xAxis*(this.xAxis/4);
-//		this.drawBuilder
-//		.setXAxis(this.xAxis)
-//		.Build();
+	protected int side() {
+		return 1;
+	}
+
+	@Override
+	protected int sizeAdjust() {
+		return 0;
 	}
 }

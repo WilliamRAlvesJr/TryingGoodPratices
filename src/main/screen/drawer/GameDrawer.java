@@ -1,7 +1,6 @@
 package main.screen.drawer;
 
 import java.awt.Graphics;
-
 import main.screen.drawer.gameobjects.background.Background;
 import main.screen.drawer.gameobjects.player.Player;
 import main.screen.drawer.gameobjects.player.players.PlayerOne;
@@ -10,25 +9,30 @@ import main.screen.gameloop.GameScreen;
 
 public class GameDrawer extends GameScreen {
 	
-	protected DrawBuilder drawBuilder;
+	protected DrawBuilder drawBuilderBG;
+	protected DrawBuilder drawBuilderOne;
+	protected DrawBuilder drawBuilderTwo;
 	
 	public static int xAxisPlayerOne;
 	public static int xAxisPlayerTwo;
 	
-	public static int punchPlayerOne;
-	public static int punchPlayerTwo;
+	public static int playerOneState;
+	public static int playerTwoState;
 	
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
-		this.drawBuilder = new DrawBuilder(graphics, this); 
+
+		this.drawBuilderBG = new DrawBuilder(graphics, this);
+		this.drawBuilderOne = new DrawBuilder(graphics, this);
+		this.drawBuilderTwo = new DrawBuilder(graphics, this);
+
+		new Background(drawBuilderBG).drawMeTo(this);
+
+		Player playerOne = new PlayerOne(drawBuilderOne).drawMeTo(this);
+		Player playerTwo = new PlayerTwo(drawBuilderTwo).drawMeTo(this);
 		
-		new Background(drawBuilder).drawMeTo(this);
-
-		Player playerOne = new PlayerOne(drawBuilder).drawMeTo(this);
-		Player playerTwo = new PlayerTwo(drawBuilder).drawMeTo(this);
-
-		playerOne.Build(xAxisPlayerOne, punchPlayerOne);
-		playerTwo.Build(xAxisPlayerTwo, punchPlayerTwo);
-			
+		playerOneState = playerOne.initDraw(xAxisPlayerOne, playerOneState);
+		playerTwoState = playerTwo.initDraw(xAxisPlayerTwo, playerTwoState);
+		
 	}
 }

@@ -16,17 +16,10 @@ public class PlayerOne extends Player {
 		this.xAxis = target.getWidth()-target.getWidth()/8; 
 		this.yAxis = target.getHeight()/2+target.getHeight()/5;
 	}
-
+	
 	@Override
-	public void Build(int xAxis, int punch) {
-		if(punch == 1){
-			doPunch();
-		} else {
-			this.xAxis += xAxis*(this.xAxis/80);
-			this.drawBuilder
-			.setXAxis(this.xAxis)
-			.Build();
-		}
+	protected int reason() {
+		return (this.xAxis/80);
 	}
 
 	@Override
@@ -37,16 +30,12 @@ public class PlayerOne extends Player {
 	}
 
 	@Override
-	public void doPunch() {
-		System.out.println("puncho");
-		image = new PlayerImageLoader().getImage("soco1");
-		this.drawBuilder
-		.setImg(image)
-		.Build();
-//		this.xAxis += xAxis*(this.xAxis/2);
-//		this.drawBuilder
-//		.setImg(img)
-//		.setXAxis(this.xAxis)
-//		.Build();
+	protected int side() {
+		return (-1);
+	}
+
+	@Override
+	protected int sizeAdjust() {
+		return 1;
 	}
 }
