@@ -1,19 +1,12 @@
 package main.executor;
 
-import main.servers.server.GameServer;
-
 public class GameExecutor {
 
+	static ClientPlayerMaker clientPlayerMaker;
+	
 	static public void main(String[] args) {
-
-		GameServer gameServer = new GameServer();
-		gameServer.start();
+			
+		clientPlayerMaker = new ClientPlayerMaker();
 		
-		MakePlayers playerOne = new MakePlayers();
-		MakePlayers playerTwo = new MakePlayers();
-		
-		playerOne.start();
-		playerTwo.start();
-
 	}
 }

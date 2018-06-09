@@ -13,20 +13,13 @@ public class PlayerOne extends Player {
 
 	@Override
 	protected void safePlaceToPlayer(GameScreen target) {
-		this.xAxis = target.getWidth()-target.getWidth()/8; 
-		this.yAxis = target.getHeight()/2+target.getHeight()/5;
+		setxAxis(target.getWidth()-target.getWidth()/8); 
+		setyAxis(target.getHeight()/2+target.getHeight()/5);
 	}
 	
 	@Override
 	protected int reason() {
-		return (this.xAxis/80);
-	}
-
-	@Override
-	public Player drawMeTo(GameScreen target) {
-		Player player = new PlayerOne(drawBuilder);
-		player.drawTo(target);
-		return player;
+		return (getxAxis()/80);
 	}
 
 	@Override

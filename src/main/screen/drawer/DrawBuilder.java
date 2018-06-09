@@ -5,6 +5,8 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+import main.screen.gameloop.GameScreen;
+
 public class DrawBuilder {
 
 	private int yAxis;
@@ -13,19 +15,19 @@ public class DrawBuilder {
 	private int height;
 	private Image img;
 	private Graphics graphics;
-	private JPanel jpanel;
+	private GameScreen gameScreen;
 	
 	public void setGraphics(Graphics graphics) {
 		this.graphics = graphics;
 	}
 
-	public DrawBuilder(Graphics graphics, JPanel jpanel) {
+	public DrawBuilder(Graphics graphics, GameScreen gameScreen) {
 		this.graphics = graphics;
-		this.jpanel = jpanel;
+		this.gameScreen = gameScreen;
 	}
 
 	public Graphics Build() {
-		graphics.drawImage(img, xAxis, yAxis, width, height, jpanel);
+		graphics.drawImage(img, xAxis, yAxis, width, height, gameScreen);
 		return graphics;
 	}
 	
@@ -61,5 +63,9 @@ public class DrawBuilder {
 	
 	public Graphics getGraphics() {
 		return graphics;
+	}
+
+	public GameScreen getGameScreen() {
+		return gameScreen;
 	}
 }

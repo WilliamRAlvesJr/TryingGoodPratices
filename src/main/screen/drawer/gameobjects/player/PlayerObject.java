@@ -12,7 +12,7 @@ public abstract class PlayerObject extends GameObject {
 		super(drawBuilder, image);
 	}
 
-	@Override
-	public abstract void drawTo(GameScreen target);
+//	@Override
+//	public abstract void drawTo(GameScreen target);
 	
 }

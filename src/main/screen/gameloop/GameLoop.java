@@ -1,18 +1,26 @@
 package main.screen.gameloop;
 
-import main.servercommunicator.MovementsThread;
+import main.servercommunicator.MovementsReader;
+import main.servercommunicator.MovementsWriter;
 
 public class GameLoop {
 
-	private MovementsThread MovementsLoop;
+	private MovementsWriter movementsWriter;
+	private MovementsReader movementsReader;
 	private GameWindow gameWindow;
 
 	public GameLoop(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 	}
-	
+
 	public void startLoop() {
-		this.MovementsLoop = new MovementsThread(gameWindow);
-		MovementsLoop.start();
+		try {
+			this.movementsWriter = new MovementsWriter(gameWindow);
+			movementsWriter.start();
+			Thread.sleep(1000);
+		} catch (Exception e) {
+//			this.movementsReader = new MovementsReader();
+//			movementsReader.start();
+		}
 	}
 }

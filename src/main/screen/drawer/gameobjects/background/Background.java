@@ -5,7 +5,6 @@ import java.awt.Image;
 import main.screen.drawer.DrawBuilder;
 import main.screen.drawer.gameobjects.GameObject;
 import main.screen.drawer.imageloader.BackgroundImageLoader;
-import main.screen.gameloop.GameScreen;
 
 public class Background extends GameObject {
 
@@ -16,11 +15,15 @@ public class Background extends GameObject {
 	protected Image setImage(){
 		return new BackgroundImageLoader().getImage();
 	}
-
+	
 	@Override
-	public GameObject drawMeTo(GameScreen target) {
-		GameObject background = new Background(drawBuilder);
-		background.drawTo(target);
-		return background;
+	public int initDraw(int xAxis, int stage){
+		/* TODO possível implementação: escolha de cenários */
+		/* TODO possível implementação: parallax nos cenários */
+		getDrawBuilder()
+		.Build();
+		
+		return 0;
 	}
+
 }
